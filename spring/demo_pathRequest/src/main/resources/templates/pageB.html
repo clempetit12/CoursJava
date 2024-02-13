@@ -14,16 +14,14 @@
         <a th:href="@{/}">Home Page</a>
     </nav>
 </header>
-<div>
-    <a th:href="@{/detail/{id}(id = ${idFirstRabbit})}">Détail du premier lapin</a>
-</div>
-<div>
-    <a th:href="@{/detail/{id}(id = ${idSecondRabbit})}">Détail du deuxième lapin</a>
-</div>
-<div>
-    <a th:href="@{/detail/{id}(id = ${idThirdRabbit})}">Détail du troisième lapin</a>
-</div>
+<ul>
+    <li th:each="r : ${myRabbits}">
+        <p Nom :>
+            <a th:href="@{/detail/{id}(id = ${r.getId()})}">Détail du lapin <p th:text="${r.getName()}"></p></a>
+        </p>
 
+    </li>
+</ul>
 
 
 </html>

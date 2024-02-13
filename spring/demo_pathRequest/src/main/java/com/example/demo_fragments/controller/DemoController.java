@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,13 +27,9 @@ public class DemoController {
     }
     @GetMapping(value = "/pageB")
     public String pageB(Model model) {
+        List<Rabbit> newRabbits = new ArrayList<>();
         List<Rabbit> rabbits = rabbitService.getRabbits();
-        Rabbit rabbit = rabbits.get(0);
-        Rabbit rabbit2 = rabbits.get(1);
-        Rabbit rabbit3 = rabbits.get(2);
-        model.addAttribute("idFirstRabbit", rabbit.getId());
-        model.addAttribute("idSecondRabbit", rabbit2.getId());
-        model.addAttribute("idThirdRabbit", rabbit3.getId());
+      model.addAttribute("myRabbits", rabbits);
         return "pageB";
     }
 
