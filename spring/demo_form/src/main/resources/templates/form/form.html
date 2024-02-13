@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire </title>
+    <span th:replace="~{pageA :: bootstrapImports}"></span>
+    <span th:replace="~{pageA :: navBar}"></span>
+</head>
+<body>
+
+<header>
+    <h1> Mon Formulaire</h1>
+    <a th:href="@{/pageB}">Page B</a>
+
+</header>
+
+<form th:action="@{/add}" th:object="${rabbit}" method="post" >
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}">
+    </div>
+    <div class="mb-3">
+        <label for="breed" class="form-label">Breed</label>
+        <input type="text" class="form-control" id="breed" th:field="*{breed}">
+    </div>
+<!--submit type par defaut -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+</html>
