@@ -12,7 +12,7 @@
 <h2 class="text-center">Les lapins</h2>
 <ul class="list-group">
     <li class="list-group-item text-light" th:each="r : ${myRabbits}">
-            <a th:href="@{/detail/{id}(id = ${r.getId()})}" class="text-decoration-none text-light">Détail du lapin <p style="display: inline;" th:text="${r.getName()}"></p></a>
+            <a th:href="@{/detail/{id}(id = ${r.getId()})}" class="text-decoration-none text-light">Détail du lapin<p style="display: inline;" th:text="${r.getName()}"></p></a>
     </li>
 </ul>
 

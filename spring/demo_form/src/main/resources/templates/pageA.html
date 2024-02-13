@@ -16,20 +16,21 @@
 </th:block>
 <th:block th:fragment="navBar">
     <nav>
-        <a th:href="@{/pageB}">Page B</a>
         <a class="text-light" th:href="@{/}"><i class="bi bi-house"></i></a>
-        <a class="text-light" th:href="@{/add}">Formulaire</i></a>
+        <a class="text-light text-decoration-none " th:href="@{/pageB}">Les lapins</a>
+        <a class="text-light text-decoration-none " th:href="@{/add}">Formulaire</i></a>
+        <a class="text-light text-decoration-none " th:href="@{/look}">Recherche</i></a>
+        <a class="text-light text-decoration-none " th:href="@{/look(nameRabbit='fleur')}">Recherche</i></a>
     </nav>
 </th:block>
 <header>
-    <h1>Home Page !</h1>
+    <h1 class="text-center">Home Page !</h1>
 
 
-    <img th:src="@{images/image.png}" alt="image">
+    <img th:src="@{images/lapinbis.jpg}" alt="image">
 </header>
 <main>
 
-    // liens pour voir les différents lapin
 </main>
 </body>
 </html>

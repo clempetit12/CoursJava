@@ -14,8 +14,10 @@ public class RabbitService {
     private final Map<UUID, Rabbit> rabbits;
 
 
+
     public RabbitService() {
         rabbits = new HashMap<>();
+
 
         Rabbit rabbit = Rabbit.builder().breed("angora")
                 .name("fleur").id(UUID.randomUUID()).build();
@@ -41,9 +43,14 @@ public class RabbitService {
         //ou rabbits.get(id);
     }
 
-    public boolean addRabbit(Rabbit rabbitAdd) {
-        rabbits.put(rabbitAdd.getId(),rabbitAdd);
+    public boolean addRabbit(String breed, String name) {
+        Rabbit rabbit1 = Rabbit.builder().id(UUID.randomUUID()).name(name).breed(breed).build();
+        rabbits.put(rabbit1.getId(),rabbit1);
         return true;
+    }
+
+    public Rabbit getRabbitByName(String name) {
+        return rabbits.values().stream().filter(rabbit -> rabbit.getName().equals(name)).findFirst().orElse(null);
     }
 
 

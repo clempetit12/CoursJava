@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +49,36 @@ public class DemoController {
 
     @PostMapping("/add")
     public String submitRabbit(@ModelAttribute("rabbit") Rabbit rabbit) {
-        Rabbit rabbit1 = Rabbit.builder().id(UUID.randomUUID()).name(rabbit.getName()).breed(rabbit.getBreed()).build();
-        rabbitService.addRabbit(rabbit1);
-        return "redirect:/";
+        String name = rabbit.getName();
+        String breed = rabbit.getBreed();
+        if (rabbitService.addRabbit(name, breed)) {
+            System.out.println("Un lapin a bien été ajouté ");
+        }
+
+        return "redirect:/pageB";
+    }
+
+    @GetMapping("/addRabbit")
+    public String submitRabbitViaGet(@RequestParam("name") String name,
+                                     @RequestParam("breed") String breed) {
+        if (rabbitService.addRabbit(name, breed)) {
+            System.out.println("Un lapin a bien été ajouté ");
+        }
+
+        return "redirect:/pageB";
+    }
+
+
+    @GetMapping("/look")
+    public String showRabbit(@RequestParam(name = "nameRabbit", required = false) String name, Model model) {
+        Rabbit rabbit = rabbitService.getRabbitByName(name);
+        System.out.println(rabbit);
+        if (rabbit != null) {
+            model.addAttribute("myRabbit", rabbit);
+            return "pageC";
+        } else {
+            return "pageD";
+        }
+
     }
 }

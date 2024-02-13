@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detail lapin !</title>
+    <title>Formulaire </title>
+    <span th:replace="~{pageA :: bootstrapImports}"></span>
+    <span th:replace="~{pageA :: navBar}"></span>
 </head>
 <body>
 
-<main>
-    <h2> Détail de mon lapin</h2>
-    <p>Nom : <span th:text="${myRabbit.name}"></span></p>
-    <p>Race : <span th:text="${myRabbit.breed}"></span></p>
+<header>
+    <h2 class="text-center"> Détail de mon lapin</h2>
+    <hr>
 
-    <a th:href="@{/pageB}">Page B</a>
+
+
+</header>
+
+<main>
+    <div class="container p-10">
+        <div class="row justify-content-center">
+            <div class="card bg-warning mt-4" style="width: 18rem;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Détail du lapin</h5>
+                    <hr>
+                    <p>Nom : <span th:text="${myRabbit.name}"></span></p>
+                    <p>Race : <span th:text="${myRabbit.breed}"></span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </main>
 
 </body>

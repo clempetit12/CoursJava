@@ -13,11 +13,14 @@
     <a th:href="@{/pageB}">Page B</a>
 
 </header>
+<div class="container">
 
-<form th:action="@{/add}" th:object="${rabbit}" method="post" >
+</div>
+<!--<form th:action="@{/add}" th:object="${rabbit}" method="post" >-->
+    <form th:action="@{/addRabbit}" th:object="${rabbit}" method="get" >
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}">
+        <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}" >
     </div>
     <div class="mb-3">
         <label for="breed" class="form-label">Breed</label>
