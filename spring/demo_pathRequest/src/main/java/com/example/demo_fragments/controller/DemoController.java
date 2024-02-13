@@ -27,7 +27,6 @@ public class DemoController {
     }
     @GetMapping(value = "/pageB")
     public String pageB(Model model) {
-        List<Rabbit> newRabbits = new ArrayList<>();
         List<Rabbit> rabbits = rabbitService.getRabbits();
       model.addAttribute("myRabbits", rabbits);
         return "pageB";
