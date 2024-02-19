@@ -21,38 +21,29 @@ public class PersonRestController {
 
     }
 
-    @GetMapping("/add")
-    public void addPerson() {
-        personService.create(Person.builder()
-                .firstName("titi")
-                .lastName("titi")
-                .email("toto@tata.com")
-                .build());
+    @PostMapping("/add")
+    public void addPerson(@RequestBody Person person) {
+        personService.create(person);
 
     }
 
-    @ResponseBody
+
     @GetMapping("/{id}")
     public Person getOnePerson(@PathVariable("id") int id) {
-        Person person = personService.findById(id);
-        person.getFirstName();
-        return person;
+        return personService.findById(id);
     }
 
-    @ResponseBody
     @DeleteMapping("/delete/{id}")
     public boolean deletePerson(@PathVariable("id") int id) {
         return personService.delete(id);
     }
 
-    @GetMapping("/update/{id}")
-    public void updatePerson(@PathVariable("id") int id) {
-        Person person = Person.builder()
-                .firstName("lala")
-                .lastName("lala")
-                .email("lala@gmail.com")
-                .build();
-      personService.update(id,person);
+    @PutMapping("/update/{id}")
+    public void updatePerson(@PathVariable("id") int id, @RequestBody Person person) {
+     if(person.getIdPerson() == id){
+         personService.update(person);
+     }
+
 
     }
 

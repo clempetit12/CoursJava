@@ -22,8 +22,8 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public Person findById(int id) {
-        return personRepository.getById(id);
+    public Person findById(Integer id) {
+        return personRepository.findByIdPerson(id);
     }
 
     @Override
@@ -39,12 +39,8 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public Person update(int id, Person person) {
-        Person personToUpdate = findById(id);
-        personToUpdate.setFirstName(person.getFirstName());
-        personToUpdate.setLastName(person.getLastName());
-        personToUpdate.setEmail(person.getEmail());
-        personRepository.save(personToUpdate);
-        return personToUpdate;
+    public boolean update( Person person) {
+            personRepository.save(person);
+            return true;
     }
 }

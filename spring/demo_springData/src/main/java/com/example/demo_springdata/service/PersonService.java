@@ -7,9 +7,9 @@ import java.util.List;
 public interface PersonService {
 
     List<Person> findAll();
-    Person findById(int id);
+    Person findById(Integer id);
     Person create(Person person);
     boolean delete(int id);
 
-    Person update(int id, Person person);
+    boolean update(Person person);
 }
