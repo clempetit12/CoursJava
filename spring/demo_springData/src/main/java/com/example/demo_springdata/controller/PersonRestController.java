@@ -15,6 +15,7 @@ public class PersonRestController {
 
     private final PersonServiceImpl personService;
 
+
     @GetMapping
     public List<Person> home() {
         return personService.findAll();
