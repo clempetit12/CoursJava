@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Persons</title>
+</head>
+<body>
+<h1>Liste des personnes</h1>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th class="text-center" scope="col">#</th>
+        <th class="text-center" scope="col">FirstName</th>
+        <th class="text-center" scope="col">LastName</th>
+        <th class="text-center" scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person, personIndex : ${persons}">
+        <td class="text-center" th:text="${personIndex.index + 1}"></td>
+        <td class="text-center" th:text="${person.firstName}"></td>
+        <td class="text-center" th:text="${person.lastName}"></td>
+        <td class="text-center" th:text="${person.email}"></td>
+
+        <td class="text-center align-middle">
+            <a class="text-decoration-none d-inline-block align-middle btn btn-outline-info" type="button" th:href="@{/detail/{studentId}(studentId=${student.id})}">
+                <span class="align-middle">Détail</span> <i class="bi bi-eye align-middle text-info"></i>
+            </a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

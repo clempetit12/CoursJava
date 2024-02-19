@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<div class="col-6 jus">
+  <h1 class="text-center mb-4">Formulaire ajout personne</h1>
+  <hr>
+  <form th:action="@{/add}" th:object="${person}" method="post">
+    <div class="mb-3">
+      <label for="firstName" class="form-label"></label>
+      <input type="text" class="form-control" id="firstName" placeholder="firstName"
+             aria-describedby="firstName" th:field="*{firstName}">
+      <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label"></label>
+      <input type="text" class="form-control" id="lastName" placeholder="LastName"
+             aria-describedby="lastName" th:field="*{lastName}">
+      <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label"></label>
+      <input type="text" class="form-control" id="email" placeholder="Email" aria-describedby="email"
+             th:field="*{email}">
+      <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary me-md-2" type="submit"><i class="bi bi-patch-plus"> Submit</i>
+      </button>
+    </div>
+    <input type="hidden" th:field="*{id}">
+
+  </form>
+</div>
+</body>
+</html>
