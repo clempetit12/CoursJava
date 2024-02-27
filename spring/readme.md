@@ -20,5 +20,14 @@ Mecanisme du fallback : si une des deux api ne repond pas je devrai générer un
 car chaque microservice fonctionne de manière autonome 
 Impossible de zipper un mono et un flux il faut que se soit du même type
 
+Package le plus répandu 
+r2dBC : initie une connexion réactive à une base de donnée via un connecteur, permet d'initier des requetes sql mais il faut des connecteurs réactifs.
+Il fournit des reactive repository.
+
+Il faut une connectionFactory pour se connecter à une base de donnée pour se connecter et les clients pour executer les requetes  les objets pour afficher les données, le type de retour
+
+
+
+
 
 
