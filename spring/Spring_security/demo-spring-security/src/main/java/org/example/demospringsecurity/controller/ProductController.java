@@ -37,7 +37,14 @@ public class ProductController {
     @DeleteMapping("/delete/{id}")
     public void deleteProduct(@PathVariable("id") Long id) {
         Product product = productService.getById(id);
+
         productService.deleteProduct(product);
+    }
+
+    @PutMapping("/update/{id}")
+    public Product updateProduct(@PathVariable("id") Long id,@RequestBody Product product){
+       Product productToUpdate =  productService.updateProduct(id,product);
+        return productToUpdate;
     }
 
 }

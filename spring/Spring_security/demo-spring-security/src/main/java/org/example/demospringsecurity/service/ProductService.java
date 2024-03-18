@@ -30,7 +30,21 @@ public class ProductService {
     }
 
     public void deleteProduct(Product product) {
-        productRepository.delete(product);
+        if(product != null){
+            productRepository.delete(product);
+        }
+    }
+
+    public Product updateProduct(Long id, Product product) {
+        Product productToUpdate = productRepository.findProductById(id);
+        if(productToUpdate!=null) {
+            productToUpdate.setName(product.getName());
+            productToUpdate.setPrice(product.getPrice());
+            productRepository.save(productToUpdate);
+            return productToUpdate;
+        }
+     return null;
+
     }
 
 }
