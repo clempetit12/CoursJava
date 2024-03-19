@@ -2,6 +2,7 @@ package org.example.demospringsecurity.security.jwt;
 
 
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -44,11 +45,20 @@ public class JwtProvider {
             Jwts.parserBuilder()
                     .setSigningKey(getSignInKey())
                     .build()
-                    .parseClaimsJwt(token);
+                    .parseClaimsJws(token);
             return true;
         }catch (Exception e) {
             throw new AuthenticationCredentialsNotFoundException("Jwt expired or is incorrect");
         }
+    }
+
+    public String getUserNameFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject();
     }
 
 
