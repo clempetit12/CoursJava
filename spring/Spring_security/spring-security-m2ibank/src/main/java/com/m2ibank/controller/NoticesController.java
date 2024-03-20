@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import com.m2ibank.model.Notice;
 import com.m2ibank.repository.NoticeRepository;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class NoticesController {
 
     @Autowired

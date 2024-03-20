@@ -42,6 +42,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
                                 .requestMatchers("api/v1/auth/**").permitAll()
+                                .requestMatchers("api/v1/product/").hasAnyRole("USER","ADMIN")
+                                .requestMatchers("api/v1/product/add").hasRole("ADMIN")
                                 .anyRequest().authenticated()
 //                        //Dans la base donnée il faut enregistrer ROLE_ADMIN
 //                        .requestMatchers("/api/v1/product/").hasAnyRole("ADMIN")

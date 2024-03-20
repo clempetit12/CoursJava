@@ -16,11 +16,11 @@ public class EazyBankBackendApplication {
 		SpringApplication.run(EazyBankBackendApplication.class, args);
 
 
-
-		SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-
-		String baseKey = Encoders.BASE64.encode(key.getEncoded());
-		System.out.println(baseKey);
+//
+//		SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+//
+//		String baseKey = Encoders.BASE64.encode(key.getEncoded());
+//		System.out.println(baseKey);
 	}
 
 }

@@ -33,10 +33,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
-                                .requestMatchers("api/v1/auth/**").permitAll()
-                                .requestMatchers("api/v1/product/").hasAnyRole("USER","ADMIN")
-                                .requestMatchers("api/v1/product/add").hasRole("ADMIN")
-                                .anyRequest().authenticated()
+                        .requestMatchers("/notices","/contact","/api/auth/**").permitAll()
+                        .requestMatchers("/myAccount/", "/myLoans", "/myCards").hasRole("USER")
+                        .requestMatchers("/myBalance").hasAnyRole("ADMIN","USER")
+                        .anyRequest().authenticated()
+
+
 
                 )
                 .exceptionHandling(exceptions->exceptions.authenticationEntryPoint(jwtAuthentificationEntryPoint))

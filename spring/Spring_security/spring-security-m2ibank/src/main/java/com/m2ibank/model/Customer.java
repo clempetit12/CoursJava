@@ -31,7 +31,7 @@ public class Customer implements UserDetails {
     @Column(name = "create_dt")
     private String createDt;
 
-   
+    private boolean isEnabled=true;
     public int getId() {
         return id;
     }
@@ -96,31 +96,31 @@ public class Customer implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return pwd;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return isEnabled;
     }
 }

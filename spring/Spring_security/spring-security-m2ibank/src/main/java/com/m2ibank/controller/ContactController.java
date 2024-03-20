@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import com.m2ibank.model.Contact;
 import com.m2ibank.repository.ContactRepository;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ContactController {
 
     @Autowired
