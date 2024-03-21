@@ -56,7 +56,7 @@ function ProductList() {
               <td>{product.name}</td>
               <td>{product.price}</td>
               <td><button className='btn btn-outline-danger' onClick={() => deleteProduct(product.id)}>Delete <i className="bi bi-trash"></i></button></td>
-              <td><button className='btn btn-outline-success' onClick={() => updateProduct(product.id)}>Edit <i className="bi bi-trash"></i></button></td>
+              <td><button className='btn btn-outline-warning' onClick={() => updateProduct(product.id)}>Edit <i className="bi bi-trash"></i></button></td>
             </tr>
           ))}
         </tbody>
