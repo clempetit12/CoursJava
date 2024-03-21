@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
     try {
       await authService.login(email, password);
-      navigate('/products'); // Rediriger vers la liste de produits après la connexion
+      navigate('/products'); 
     } catch (error) {
       setError('Échec de la connexion. Veuillez vérifier vos identifiants.');
     }

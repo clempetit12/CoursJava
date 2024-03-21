@@ -5,6 +5,7 @@ import Register from './components/Register';
 import ProductList from './components/ProductList';
 import Header from './shared/Header';
 import CreateProduct from './components/CreateProduct';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/products" element={<ProductList />} />
-        <Route path="/create-product" element={<CreateProduct />} />
+       <Route path="/create-product" element={<CreateProduct />} />
         <Route path="/create-product/:id" element={<CreateProduct />} />
         <Route path="/" element={<Login />} />
       </Routes>
@@ -24,4 +25,3 @@ function App() {
 }
 
 export default App;
-
