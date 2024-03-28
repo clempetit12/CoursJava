@@ -1,0 +1,20 @@
+# Image de base
+FROM alpine
+
+# Optionnel  ajouter des metadonnées
+LABEL key="clémence"
+
+# Définir un répertoire de travail
+WORKDIR /root
+
+# Pas besoin de dezippage, copier le répertoire courant vers le workdir (. repertoir courant vers . workdir)
+COPY . .
+
+# Lancement d'une commande 
+RUN apk update && apk add nano
+
+# Définir le commande par défaut (executer quand image sera construite et sera un conteneur)
+CMD [ "cat","monfichier.txt" ]
+
+#Exposer un port
+EXPOSE 80

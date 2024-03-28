@@ -33,12 +33,12 @@ Image : classe  (metaphore)
 Conteneur : objets  (metaphore)
 
 Tout conteneur est basé sur une image 
-Si on dispose de l'image un contenur peut etre créé
+Si on dispose de l'image un conteneur peut etre créé
 Sinon on va chercher dans docker registry et téléchaarger l'image
 
 docker run (image) => toujours terminer par nom de l'image
 
-# Commandes linux 
+# Commandes linux (Conteneurs et images)
 
 / => plus haut niveau des dossiers (sur machine windows C:/)
 #Role => USER:ROOT il a tous les droits 
@@ -70,3 +70,102 @@ Port par defaut à ne pas utiliser pour mettre les serveurs web
 -p Machine locale : conteneur 
 
 0.0.0.0 => ouvre les ports si j'ai la machine ip qui lance lappli et jajoute 8080 je peux avoir acees au serveur 
+
+Pour créer une image à partir d'un conteneur (pas la pratique à utiliser)
+docker commit demobuild demoimage (on peut rajouter la version sinon c'est la dernière version)
+
+Pour envoyer une image sur docker hub : nomd'utilisateur /nomdel'image:tag
+
+Pour déplacer un ficher mv assets index.html .. (se placer où il y a les fichiers et .. pour le dossier parent)
+
+Pour créer une image (à partir d'un conteneur) : docker commit exercice-site-3(nom du conteneur) imageOlivia(nom image)
+Pour renommer limage : docker tag imageolivia clempetit12/imageolivia
+Pour push image sur docker hub docker push clempetit12/imageolivia
+
+## Volumes
+
+3 types :
+- Anonyme
+- Nomme
+- Bind Mount
+
+Permet de garder les fichiers et les repertoires de nos conteneurs, si le conteneur vient à disparaitre j'ai la sauvegarde du fichier
+
+On peut avoir trois conteneurs :
+- BDD/Mysql
+- Back/java
+- Front:react
+Pour qu'ils puissent communiquer entre eux on va les mettre sur le même réseau 
+
+On pourra interroger les conteneurs avec le name du contneur plus besoin de l'adresse ip
+Pour pouvoir accéder que au front on ouvre un port sur le front
+
+
+Créer un volume
+docker volume create mydata
+docker run -v mydata:/root -it demoimage : on met les données qui se trouvent dans /root de demoimage dans mon volume mydata
+
+
+DNS : tel nom est relié à tel adresse ip 
+
+
+## Créer un reseau 
+
+docker network create mynetwork : créer réseau 
+ajouter un contenair au reseau : docker run -name machinea -d --network mynetwork nginx
+
+apt-get update && apt-get install -y iputils-ping  : installer ping pour recuperer adresse ip 
+
+Ajouter un conteneur à un réseau existant : docker network connect mynetwork machinec
+Ajouter un conteneur à un réseau existant : docker network disconnect mynetwork machinec
+
+## DockerFile
+
+CMD :  rajoute des instructions apres image je viens ajouter 
+Entrypoint : vient remplacer la commande 
+
+tar.gz archive sous linux 
+
+
+Docker build pour créer image à partir du dockerfile : docker build -t demodockerfile2 .
+
+Pour créer un conteneur et le lancer docker run --name imagedocker2 -it demodockerfile2
+Pour rentrer dans le shell : docker run --name imagedocker2test -it demodockerfile2 sh
+
+
+dockerfile utilisation nocache pour forcer à recommencer du début 
+
+
+Si on veut lancer un conteneur en disant de prendr en compte les variables d'environnement : docker run -e PORT=5000 -p 5005:5000 -d image
+
+## DockerFile pour java
+
+.mvn : pour ne pas avoir besoin de maven sur son poste et pouvoir lancer le projet
+Image maeven
+
+FROM maven AS builder
+
+WORKDIR /app
+
+# Envoyer toutes les dépendances du projet (pom.xml), commande Maven qui télécharge toutes les dépendances de votre projet et les rend disponibles hors ligne.
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# copie les fichiers sources et execution de la construction
+COPY src ./src
+RUN mvn package -DskipTests
+
+FROM openjdk
+
+WORKDIR /app
+
+# copie de l'artefact JAR depuis l'étape précédente : artefactId-version
+COPY --from=builder /app/target/TP_Blog-0.0.1-SNAPSHOT.jar .
+
+#voir dans application.properties
+EXPOSE 8081
+
+ENTRYPOINT [ "java","-jar","TP_Blog-0.0.1-SNAPSHOT.jar" ]
+
+
+

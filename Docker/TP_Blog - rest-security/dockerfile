@@ -1,0 +1,30 @@
+FROM maven AS builder 
+
+WORKDIR /app
+
+# Envoyer toutes les dépendances du projet (pom.xml), commande Maven qui télécharge toutes les dépendances de votre projet et les rend disponibles hors ligne.
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# copie les fichiers sources et execution de la construction 
+COPY src ./src
+RUN mvn package -DskipTests
+
+FROM openjdk
+
+WORKDIR /app
+
+# copie de l'artefact JAR depuis l'étape précédente : artefactId-version
+COPY --from=builder /app/target/TP_Blog-0.0.1-SNAPSHOT.jar .
+
+#voir dans application.properties
+EXPOSE 8081
+
+ENTRYPOINT [ "java","-jar","TP_Blog-0.0.1-SNAPSHOT.jar" ]
+
+
+
+
+
+
+
